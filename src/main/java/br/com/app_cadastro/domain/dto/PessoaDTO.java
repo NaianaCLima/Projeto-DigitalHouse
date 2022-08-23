@@ -7,17 +7,15 @@ import java.util.stream.Collectors;
 
 import br.com.app_cadastro.domain.entity.Pessoa;
 
-
 public class PessoaDTO implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private String nome;
 	private String sobrenome;
 	private String nomeSocial;
 	private String email;
-	
+
 	public PessoaDTO(Pessoa pessoa) {
 		this.id = pessoa.getId();
 		this.nome = pessoa.getNome();
@@ -25,8 +23,8 @@ public class PessoaDTO implements Serializable {
 		this.nomeSocial = pessoa.getNomeSocial();
 		this.email = pessoa.getEmail();
 	}
-	
-	public static List<PessoaDTO> converterLista(List<Pessoa> pessoas){
+
+	public static List<PessoaDTO> converterLista(List<Pessoa> pessoas) {
 		return pessoas.stream().map(PessoaDTO::new).collect(Collectors.toList());
 	}
 
@@ -87,9 +85,5 @@ public class PessoaDTO implements Serializable {
 		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
 				&& Objects.equals(nomeSocial, other.nomeSocial) && Objects.equals(sobrenome, other.sobrenome);
 	}
-	
-	
 
-	
-	
 }

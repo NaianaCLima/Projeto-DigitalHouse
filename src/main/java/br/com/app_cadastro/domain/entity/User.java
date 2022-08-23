@@ -20,7 +20,6 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 @Entity
 @Table(name = "users")
 public class User implements UserDetails, Serializable {
@@ -29,7 +28,7 @@ public class User implements UserDetails, Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "id_user")
 	private Long id;
 
 	@Column(name = "user_name", unique = true) // não permite repetição do valor do objeto
@@ -58,12 +57,9 @@ public class User implements UserDetails, Serializable {
 		return this.permissions;
 	}
 
-	
-	
 	public User() {
-		// TODO Auto-generated constructor stub
-	}
 
+	}
 
 	public User(Long id, String userName, String fullName, String password, Boolean accountNonExpired,
 			Boolean accountNonLocked, Boolean credentialNonExpired, Boolean enabled, List<Permission> permissions) {
@@ -77,7 +73,6 @@ public class User implements UserDetails, Serializable {
 		this.enabled = enabled;
 		this.permissions = permissions;
 	}
-
 
 	@Override
 	public String getPassword() {
@@ -110,9 +105,8 @@ public class User implements UserDetails, Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "user_permission", 
-	joinColumns = { @JoinColumn(name = "id_user") }
-	, inverseJoinColumns = {	@JoinColumn(name = "id_permission") })
+	@JoinTable(name = "user_permission", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
+			@JoinColumn(name = "id_permission") })
 	private List<Permission> permissions;
 
 	public List<String> getRoles() {
@@ -146,108 +140,72 @@ public class User implements UserDetails, Serializable {
 				&& Objects.equals(permissions, other.permissions) && Objects.equals(userName, other.userName);
 	}
 
-
-
 	public Long getId() {
 		return id;
 	}
-
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-
 	public String getUserName() {
 		return userName;
 	}
-
-
 
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-
-
 	public String getFullName() {
 		return fullName;
 	}
-
-
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
 
-
-
 	public Boolean getAccountNonExpired() {
 		return accountNonExpired;
 	}
-
-
 
 	public void setAccountNonExpired(Boolean accountNonExpired) {
 		this.accountNonExpired = accountNonExpired;
 	}
 
-
-
 	public Boolean getAccountNonLocked() {
 		return accountNonLocked;
 	}
-
-
 
 	public void setAccountNonLocked(Boolean accountNonLocked) {
 		this.accountNonLocked = accountNonLocked;
 	}
 
-
-
 	public Boolean getCredentialNonExpired() {
 		return credentialNonExpired;
 	}
-
-
 
 	public void setCredentialNonExpired(Boolean credentialNonExpired) {
 		this.credentialNonExpired = credentialNonExpired;
 	}
 
-
-
 	public Boolean getEnabled() {
 		return enabled;
 	}
-
-
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
-
-
 	public List<Permission> getPermissions() {
 		return permissions;
 	}
-
-
 
 	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
 	}
 
-
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	
-	
 }

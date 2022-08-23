@@ -13,42 +13,39 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
 @Entity
 @Table(name = "tb_pessoas")
-
-public class Pessoa implements Serializable{
-
+public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_pessoa")
+	@Column(name = "id_pessoa")
 	private Long id;
-	
+
 	@NotBlank
-	@Size(max=20)
-	@Column(name="nome_pessoa")
+	@Size(max = 20)
+	@Column(name = "nome_pessoa")
 	private String nome;
-		
+
 	@NotBlank
-	@Size(max=40)
-	@Column(name="sobrenome_pessoa")
+	@Size(max = 40)
+	@Column(name = "sobrenome_pessoa")
 	private String sobrenome;
-		
+
 	@NotBlank
-	@Size(max=35)	
-	@Column(name="nomesocial_pessoa")
+	@Size(max = 35)
+	@Column(name = "nomesocial_pessoa")
 	private String nomeSocial;
-	
+
 	@NotBlank
-	@Size(max=80)
+	@Size(max = 80)
 	@Email
-	@Column(name="email_pessoa")
+	@Column(name = "email_pessoa")
 	private String email;
 
 	public Pessoa() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Pessoa(Long id, @NotBlank @Size(max = 20) String nome, @NotBlank @Size(max = 40) String sobrenome,
@@ -117,12 +114,5 @@ public class Pessoa implements Serializable{
 		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
 				&& Objects.equals(nomeSocial, other.nomeSocial) && Objects.equals(sobrenome, other.sobrenome);
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }
